@@ -1,17 +1,12 @@
 const express = require("express");
+const cors = require("cors");
+const radioRoutes = require("./Routes/radioRoutes")
+
+const PORT = process.env.PORT || 8080;
+
 const app = express();
-const cors =require("cors")
+app.use(cors());
 
-const corsOptions = {
-  origin: ["http://localhost:5173"]
-}
-app.use(cors(corsOptions))
+app.use("/api", radioRoutes)
 
-app.get("/api", (req, res) => {
-  res.json({fruits:["apple"]})
-})
-
-
-app.listen(8080, () => {
-  console.log("server on 8080");
-});
+app.listen(PORT, () => console.log(`Server is connected on ${PORT}`));

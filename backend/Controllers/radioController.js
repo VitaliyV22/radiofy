@@ -1,0 +1,20 @@
+const RadioBrowser = require('radio-browser')
+
+
+exports.getRadioData = async (req, res) => {
+    let filter = {
+        limit: 5,          // list max 5 items
+        by: 'tag',         // search in tag
+        searchterm: 'jazz' // term in tag
+    }
+    try {
+        const response = await (RadioBrowser.getStations(filter))
+        res.json(response.data);
+        // console.log(`API Server: ${RadioBrowser.service_url}`)
+        // console.log(response)
+        
+    }
+    catch (e) {
+        console.error(e)
+    }
+}
