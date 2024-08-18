@@ -1,5 +1,4 @@
-const RadioBrowser = require('radio-browser')
-
+const axios = require('axios')
 
 exports.getRadioData = async (req, res) => {
     let filter = {
@@ -8,7 +7,7 @@ exports.getRadioData = async (req, res) => {
         searchterm: 'jazz' // term in tag
     }
     try {
-        const response = await (RadioBrowser.getStations(filter))
+        const response = await axios.get('http://de1.api.radio-browser.info/json/stations/bycountryexact/italy')
         res.json(response.data);
         // console.log(`API Server: ${RadioBrowser.service_url}`)
         // console.log(response)
