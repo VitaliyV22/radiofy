@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
 import { Popup } from "react-leaflet";
-import axios from "axios";
+
 import geoPoints from "../local-json/geoPoints.json"
 
 
@@ -15,18 +15,7 @@ const Map = () => {
     iconSize: [20, 20],
   });
   
-  const radioData = async () => {
-    try {
-      const res = await axios({
-        url: "http://localhost:8080/api/radiodata",
-        method: "GET",
-      });
-      console.log(res)
-    } catch (err) {
-      console.error("Error fetching news:", err);
-    }
-  };
- 
+
   return (
     <div>
       <div>
@@ -45,9 +34,7 @@ const Map = () => {
           ))}
         </MapContainer>
       </div>
-      <button className="text-4xl" onClick={radioData}>
-        API
-      </button>
+    
     </div>
   );
 };

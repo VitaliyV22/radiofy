@@ -9,8 +9,7 @@ exports.getRadioData = async (req, res) => {
     try {
         const response = await axios.get('http://de1.api.radio-browser.info/json/stations/bycountryexact/italy')
         res.json(response.data);
-        // console.log(`API Server: ${RadioBrowser.service_url}`)
-        // console.log(response)
+        console.log(response)
         
     }
     catch (e) {

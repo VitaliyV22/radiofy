@@ -1,94 +1,117 @@
 [
   {
     "geocode": [40.67, -73.94],
-    "popUp": "New York City, USA"
+    "popUp": "New York City, USA",
+    "State": "New York"
   },
   {
     "geocode": [34.05, -118.25],
-    "popUp": "Los Angeles, USA"
+    "popUp": "Los Angeles, USA",
+    "State": "California"
   },
   {
     "geocode": [41.88, -87.62],
-    "popUp": "Chicago, USA"
+    "popUp": "Chicago, USA",
+    "State": "Illinois"
   },
   {
     "geocode": [48.85, -97.14],
-    "popUp": "Toronto, Canada"
+    "popUp": "Toronto, Canada",
+    "State": "Ontario"
   },
   {
     "geocode": [-23.55, -46.63],
-    "popUp": "São Paulo, Brazil"
+    "popUp": "São Paulo, Brazil",
+    "State": "São Paulo"
   },
   {
     "geocode": [-34.61, -58.38],
-    "popUp": "Buenos Aires, Argentina"
+    "popUp": "Buenos Aires, Argentina",
+    "State": "Buenos Aires"
   },
   {
     "geocode": [-12.04, -77.03],
-    "popUp": "Lima, Peru"
+    "popUp": "Lima, Peru",
+    "State": "Lima Province"
   },
   {
     "geocode": [51.51, -0.13],
-    "popUp": "London, UK"
+    "popUp": "London, UK",
+    "State": "England"
   },
   {
     "geocode": [48.85, 2.35],
-    "popUp": "Paris, France"
+    "popUp": "Paris, France",
+    "State": "Île-de-France"
   },
   {
     "geocode": [52.52, 13.41],
-    "popUp": "Berlin, Germany"
+    "popUp": "Berlin, Germany",
+    "State": "Berlin"
   },
   {
     "geocode": [-1.29, 36.82],
-    "popUp": "Nairobi, Kenya"
+    "popUp": "Nairobi, Kenya",
+    "State": "Nairobi County"
   },
   {
     "geocode": [-33.92, 18.42],
-    "popUp": "Cape Town, South Africa"
+    "popUp": "Cape Town, South Africa",
+    "State": "Western Cape"
   },
   {
     "geocode": [30.05, 31.25],
-    "popUp": "Cairo, Egypt"
+    "popUp": "Cairo, Egypt",
+    "State": "Cairo Governorate"
   },
   {
     "geocode": [35.68, 139.76],
-    "popUp": "Tokyo, Japan"
+    "popUp": "Tokyo, Japan",
+    "State": "Tokyo"
   },
   {
     "geocode": [39.91, 32.85],
-    "popUp": "Beijing, China"
+    "popUp": "Beijing, China",
+    "State": "Beijing"
   },
   {
     "geocode": [28.61, 77.23],
-    "popUp": "New Delhi, India"
+    "popUp": "New Delhi, India",
+    "State": "Delhi"
   },
   {
     "geocode": [-33.87, 151.21],
-    "popUp": "Sydney, Australia"
+    "popUp": "Sydney, Australia",
+    "State": "New South Wales"
   },
   {
     "geocode": [41.90, 12.49],
-    "popUp": "Rome, Italy"
+    "popUp": "Rome, Italy",
+    "State": "Lazio"
   },
   {
     "geocode": [45.47, 9.19],
-    "popUp": "Milan, Italy"
+    "popUp": "Milan, Italy",
+    "State": "Lombardy"
   },
   {
     "geocode": [50.45, 30.52],
-    "popUp": "Kiev, Ukraine"
+    "popUp": "Kiev, Ukraine",
+    "State": "Kyiv"
   },
   {
     "geocode": [52.23, 21.01],
-    "popUp": "Warsaw, Poland"
+    "popUp": "Warsaw, Poland",
+    "State": "Masovian Voivodeship"
   },
   {
     "geocode": [48.21, 16.37],
-    "popUp": "Vienna, Austria"
+    "popUp": "Vienna, Austria",
+    "State": "Vienna"
   },
   {
     "geocode": [59.33, 18.07],
-    "popUp": "Stockholm, Sweden"
+    "popUp": "Stockholm, Sweden",
+    "State": "Stockholm County"
   }
 ]
