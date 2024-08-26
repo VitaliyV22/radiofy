@@ -4,17 +4,16 @@ import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
 import { Popup } from "react-leaflet";
 
-import geoPoints from "../local-json/geoPoints.json"
-
+import { useRadioData } from "../hooks/useRadioData";
 
 const Map = () => {
-  const markers = geoPoints
-   
+  const markers = useRadioData();
+  console.log(useRadioData())
+
   const customIcon = new Icon({
     iconUrl: "https://cdn-icons-png.flaticon.com/512/1527/1527105.png",
     iconSize: [20, 20],
   });
-  
 
   return (
     <div>
@@ -26,15 +25,12 @@ const Map = () => {
             url="https://{s}.tile.jawg.io/jawg-matrix/{z}/{x}/{y}{r}.png?access-token={accessToken}"
           />
           {markers.map((marker) => (
-            <Marker  position={marker.geocode} icon={customIcon}>
-              <Popup>
-            
-              </Popup>
+            <Marker position={marker.geoCode} icon={customIcon}>
+              <Popup></Popup>
             </Marker>
           ))}
         </MapContainer>
       </div>
-    
     </div>
   );
 };

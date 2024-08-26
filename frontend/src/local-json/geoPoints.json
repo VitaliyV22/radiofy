@@ -1,117 +1,66 @@
 [
   {
-    "geocode": [40.67, -73.94],
-    "popUp": "New York City, USA",
-    "State": "New York"
-  },
-  {
-    "geocode": [34.05, -118.25],
-    "popUp": "Los Angeles, USA",
-    "State": "California"
-  },
-  {
-    "geocode": [41.88, -87.62],
-    "popUp": "Chicago, USA",
-    "State": "Illinois"
-  },
-  {
-    "geocode": [48.85, -97.14],
-    "popUp": "Toronto, Canada",
-    "State": "Ontario"
-  },
-  {
-    "geocode": [-23.55, -46.63],
-    "popUp": "São Paulo, Brazil",
-    "State": "São Paulo"
-  },
-  {
-    "geocode": [-34.61, -58.38],
-    "popUp": "Buenos Aires, Argentina",
-    "State": "Buenos Aires"
-  },
-  {
-    "geocode": [-12.04, -77.03],
-    "popUp": "Lima, Peru",
-    "State": "Lima Province"
-  },
-  {
-    "geocode": [51.51, -0.13],
-    "popUp": "London, UK",
-    "State": "England"
-  },
-  {
-    "geocode": [48.85, 2.35],
-    "popUp": "Paris, France",
-    "State": "Île-de-France"
-  },
-  {
-    "geocode": [52.52, 13.41],
+    "geoCode": [52.52, 13.41],
     "popUp": "Berlin, Germany",
-    "State": "Berlin"
+    "name": "On House Radio",
+    "Website": "https://www.0nradio.com/",
+    "flag": "https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/flag_of_Germany.svg/1024px-flag_of_Germany.svg.png",
+    "url": "https://0n-house.radionetz.de/0n-house.mp3"
   },
   {
-    "geocode": [-1.29, 36.82],
-    "popUp": "Nairobi, Kenya",
-    "State": "Nairobi County"
+    "geoCode": [52.3676, 4.9041],
+    "popUp": "Amsterdam, Netherlands",
+    "name": "House Beats Fm",
+    "Website": "https://www.housebeats.fm",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/flag_of_the_Netherlands.svg/1024px-flag_of_the_Netherlands.svg.png",
+    "url": "https://mediaserv38.live-streams.nl:18048/stream"
   },
   {
-    "geocode": [-33.92, 18.42],
-    "popUp": "Cape Town, South Africa",
-    "State": "Western Cape"
-  },
-  {
-    "geocode": [30.05, 31.25],
-    "popUp": "Cairo, Egypt",
-    "State": "Cairo Governorate"
-  },
-  {
-    "geocode": [35.68, 139.76],
-    "popUp": "Tokyo, Japan",
-    "State": "Tokyo"
-  },
-  {
-    "geocode": [39.91, 32.85],
-    "popUp": "Beijing, China",
-    "State": "Beijing"
-  },
-  {
-    "geocode": [28.61, 77.23],
-    "popUp": "New Delhi, India",
-    "State": "Delhi"
-  },
-  {
-    "geocode": [-33.87, 151.21],
-    "popUp": "Sydney, Australia",
-    "State": "New South Wales"
-  },
-  {
-    "geocode": [41.90, 12.49],
-    "popUp": "Rome, Italy",
-    "State": "Lazio"
-  },
-  {
-    "geocode": [45.47, 9.19],
-    "popUp": "Milan, Italy",
-    "State": "Lombardy"
-  },
-  {
-    "geocode": [50.45, 30.52],
-    "popUp": "Kiev, Ukraine",
-    "State": "Kyiv"
-  },
-  {
-    "geocode": [52.23, 21.01],
-    "popUp": "Warsaw, Poland",
-    "State": "Masovian Voivodeship"
-  },
-  {
-    "geocode": [48.21, 16.37],
+    "geoCode": [48.21, 16.37],
     "popUp": "Vienna, Austria",
-    "State": "Vienna"
+    "name": "House Music Vienna",
+    "website": "https://laut.fm/house",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_Austria.svg/800px-Flag_of_Austria.svg.png",
+    "url": "https://house.stream.laut.fm/house?ref=radiode&t302=2024-08-23_01-28-51&uuid=9ecfd329-fd58-44f7-9a34-2589ea928a1d"
   },
   {
-    "geocode": [59.33, 18.07],
-    "popUp": "Stockholm, Sweden",
-    "State": "Stockholm County"
+    "geoCode": [51.2538, -85.3232],
+    "popUp": "Ontario, Canada",
+    "name": "100 Best Ibiza Deep House",
+    "website": "https://mytuner-radio.com/radio/100-best-ibiza-deep-house-481586/",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/1024px-Flag_of_Canada_%28Pantone%29.svg.png",
+    "url": "https://stream.zeno.fm/lwv6zqgtv1dtv"
+  },
+  {
+    "geoCode": [50.0755, 14.4378],
+    "popUp": "Prague, Czechia",
+    "name": "We House Radio",
+    "website": "https://www.wehouseradio.com/",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Flag_of_the_Czech_Republic.svg/1024px-Flag_of_the_Czech_Republic.svg.png",
+    "url": "https://stream.zeno.fm/lwv6zqgtv1dtv"
+  },
+  {
+    "geoCode": [51.5072, 0.1276],
+    "popUp": "London, UK",
+    "name": "House Nation UK",
+    "website": "https://housenationuk.com/",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/flag_of_Great_Britain_%281707%E2%80%931800%29.svg/1024px-flag_of_Great_Britain_%281707%E2%80%931800%29.svg.png",
+    "url": "https://streaming.radio.co/s06bd9d805/listen"
+  },
+  {
+    "geoCode": [41.8781, -87.6298],
+    "popUp": "Chicago, United States",
+    "name": "DanceFactory",
+    "website": "https://www.dancefactoryfm.com/",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg/1024px-flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg.png",
+    "url": "https://streaming.live365.com/a98835?listenerId=Live365-Widget-AdBlock&aw_0_1st.playerid=Live365-Widget&aw_0_1st.skey=1724371461"
+  },
+  {
+    "geoCode": [41.8967, 12.4822],
+    "popUp": "Rome, Italy",
+    "name": "Lolli Radio Dance",
+    "website": "https://www.lolliradio.net/dance/",
+    "flag": "https://upload.wikimedia.org/wikipedia/en/thumb/0/03/flag_of_Italy.svg/1280px-flag_of_Italy.svg.png",
+    "URL": "https://stream.lolliradio.net/lolli_dance.mp3?FLID=1&aw_0_req.gdpr=true&type=.mp3"
   }
 ]
