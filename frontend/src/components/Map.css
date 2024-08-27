@@ -1,5 +1,14 @@
 .leaflet-container {
-    height: 80vh;
-    border: black;
+  height: 80vh;
+  border: black;
+}
 
+.leaflet-popup-content-wrapper {
+ /* From https://css.glass */
+background: rgba(232, 220, 220, 0.21);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(10.9px);
+-webkit-backdrop-filter: blur(10.9px);
+border: 1px solid rgba(232, 220, 220, 0.3);
 }
