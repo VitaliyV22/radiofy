@@ -1,18 +1,19 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginComp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/api/login', { email, password });
+      const response = await axios.post('http://localhost:8080/api/auth/login', { email, password });
       console.log(response.data);
       localStorage.setItem('token', response.data.token);
-      // Handle successful login (e.g., redirect to dashboard)
+      navigate('/admin');
     } catch (error) {
       console.error('Login failed:', error.response.data);
     }
