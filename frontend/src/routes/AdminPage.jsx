@@ -1,8 +1,10 @@
 import React from "react";
+import { Navbar } from "../components/Navbar";
 
 export const AdminPage = () => {
   return (
     <div>
+      <Navbar/>
       {" "}
       <div>
         <h1>Admin Page</h1>
