@@ -48,8 +48,9 @@ const Map = () => {
   return (
     <div>
       <div>
-        <MapContainer center={[40, -40]} zoom={4}>
+        <MapContainer  center={[40, -40]} zoom={4} scrollWheelZoom={false}>
           <TileLayer
+            maxZoom={20}
             attribution='&copy; <a href="http://www.openstreetmap.org/copyright"></a>'
             accessToken="hn5kmXxWWOt8euSd433co9RRNzW1eCXooBwj5G1hiLpigxrYau2cXg7KeWy0W6Yl"
             url={`${tileLayerUrl}.png?access-token=${accessToken}`}
@@ -57,13 +58,16 @@ const Map = () => {
           {markers.map((marker, index) => (
             <Marker key={index} position={marker.geoCode} icon={customIcon}>
               <Popup>
-                <div className="flex flex-col  gap-2">
+                <div className="flex flex-col gap-2 w-36">
                   <div>
                     <h1 className="text-xl font-bold text-primary">
                       {marker.popUp}
                     </h1>
                     <div className="flex items-center gap-2">
-                      <img className="w-13 h-10" src={marker.flag} />
+                      <div>
+                      <img className="w-[86px] h-[50px] object-contain " src={marker.flag} />
+                      </div>
+                    
                       <h1 className="text-lg text-secondary">{marker.name}</h1>
                     </div>
                   </div>

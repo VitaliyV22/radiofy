@@ -7,13 +7,13 @@ export const Navbar = () => {
     <>
      <div className="navbar bg-base-100">
   <div className="flex-1">
-   <Link to="/" className="btn btn-ghost text-4xl">Radiofy</Link>
-   
+   <Link to="/" className="btn btn-ghost  text-4xl">Radiofy</Link>
+
     
   </div>
   <div className="flex-none">
     <ul className="menu menu-horizontal px-1">
-      <li><a className="text-2xl">Login</a></li>
+      <li><Link to="/login" className="text-2xl">Login</Link></li>
       
     </ul>
     <label className="flex cursor-pointer gap-2">
@@ -31,7 +31,7 @@ export const Navbar = () => {
     <path
       d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
   </svg>
-  <input type="checkbox" value="sunset" className="toggle theme-controller" />
+  <input type="checkbox" value="black" className="toggle theme-controller" />
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"

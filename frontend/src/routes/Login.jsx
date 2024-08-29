@@ -1,7 +1,15 @@
-import React from 'react'
-
+import React from "react";
+import { Navbar } from "../components/Navbar";
+import LoginComp from "../components/LoginComp";
+import { Link } from "react-router-dom";
 export const Login = () => {
   return (
-    <div>Login</div>
-  )
-}
+    <>
+      <Navbar />
+      <LoginComp />
+      <div>
+        <Link to="/register">Register</Link>
+      </div>
+    </>
+  );
+};
