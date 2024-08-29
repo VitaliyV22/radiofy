@@ -5,7 +5,7 @@ export const useRadioData = () => {
     const [data, setData] = useState([]);
     
     useEffect(() => {
-        axios.get('http://localhost:8080/api/radioData')
+        axios.get('http://localhost:8080/api/radio')
             .then(response => setData(response.data))
             .catch(console.error); 
     }, []);
