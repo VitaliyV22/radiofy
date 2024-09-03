@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerUser, loginUser } = require('../controllers/authController');
+const { registerUser, loginUser, getUserData } = require('../controllers/authController');
 const { authenticateToken } = require('../middlewares/authMiddleware');
 
 const router = express.Router();
@@ -8,10 +8,7 @@ const router = express.Router();
 router.post('/register', registerUser);
 router.post('/login', loginUser);
 
-// Protected 
-router.get('/profile', authenticateToken, (req, res) => {
-
-  res.json({ message: 'This is a protected profile route', user: req.user });
-});
+// Protected route to get user data
+router.get('/profile', authenticateToken, getUserData);
 
 module.exports = router;

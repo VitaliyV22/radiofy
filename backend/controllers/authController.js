@@ -46,4 +46,23 @@ async function loginUser(req, res) {
   }
 }
 
-module.exports = { registerUser, loginUser };
+async function getUserData(req, res) {
+  try {
+    const userId = req.user.userId; // userId is obtained from the decoded token in the middleware
+
+    const result = await pool.query('SELECT id, username, email FROM users WHERE id = $1', [userId]);
+    const user = result.rows[0];
+
+    if (user) {
+      res.json({ user });
+    } else {
+      res.status(404).json({ error: 'User not found' });
+    }
+  } catch (error) {
+    console.error('Error retrieving user data:', error);
+    res.status(500).json({ error: 'Failed to retrieve user data' });
+  }
+}
+
+
+module.exports = { registerUser, loginUser, getUserData };

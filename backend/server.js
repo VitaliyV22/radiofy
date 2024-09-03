@@ -20,6 +20,7 @@ createUsersTable();
 // Use routes
 app.use('/api/auth', authRoutes);
 app.use('/api/radio', radioRoutes);
+app.use('api/profile', authRoutes)
 
 const PORT = 8080;
 

@@ -1,20 +1,26 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import {
   faCirclePlay,
   faPauseCircle,
   faVolumeUp,
   faVolumeMute,
-  faStar,
-  } from "@fortawesome/free-solid-svg-icons";
-
+} from "@fortawesome/free-solid-svg-icons";
+import { PiStarBold, PiStarFill } from "react-icons/pi";
 
 const Player = ({ url, stationName, stationFlag }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false)
+  const [isFavorite, setIsFavorite] = useState(false);
   const [volume, setVolume] = useState(1);
   const [showVolumeControl, setShowVolumeControl] = useState(false);
   const audioRef = useRef(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  });
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -35,6 +41,10 @@ const Player = ({ url, stationName, stationFlag }) => {
       setIsPlaying(false);
     }
   }, [url]);
+
+  const handleFavorites = () => {
+    setIsFavorite((prevIsFavorite) => !prevIsFavorite);
+  };
 
   const handlePlayPause = () => {
     const audio = audioRef.current;
@@ -69,13 +79,20 @@ const Player = ({ url, stationName, stationFlag }) => {
           <h1 className="font-bold text-2xl">{stationName}</h1>
         </div>
         {/* player  */}
-        <div className="flex items-center  p-2 rounded-xl gap-3">
-          <button  >
-          <FontAwesomeIcon
-           className="w-10 h-10"
-           icon={isFavorite ?   faStar : faStar }
-          />
-          </button>
+        <div className="flex items-center p-2 rounded-xl gap-3">
+          {isLoggedIn ? (
+            <>
+              <button className="text-xl" onClick={handleFavorites}>
+                {isFavorite ? <PiStarFill /> : <PiStarBold />}
+              </button>
+            </>
+          ) : (
+            <div>
+              <Link className="text-xl" to="/login">
+              <PiStarFill />
+              </Link>
+            </div>
+          )}
           <button onClick={handlePlayPause}>
             <FontAwesomeIcon
               className="w-10 h-10"

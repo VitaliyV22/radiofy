@@ -8,8 +8,10 @@ import { useRadioData } from "../hooks/useRadioData";
 import { useState } from "react";
 import { useEffect } from "react";
 const Map = () => {
+
   const accessToken = process.env.REACT_APP_MAP_ACCESS_TOKEN;
   const markers = useRadioData();
+  
   const [currentUrl, setCurrentUrl] = useState(null);
   const [stationName, setStationName] = useState(null);
   const [stationFlag, setStationFlag] = useState(null);
@@ -28,7 +30,6 @@ const Map = () => {
   });
 
   // Custon leaflet tiles thanks to https://github.com/leaflet-extras/leaflet-providers
-
   const darkTiles = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}";
   const lightTiles =
     "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}";
@@ -48,7 +49,7 @@ const Map = () => {
   return (
     <div>
       <div>
-        <MapContainer  center={[40, -40]} zoom={4} scrollWheelZoom={false}>
+        <MapContainer center={[40, -40]} zoom={4} scrollWheelZoom={false}>
           <TileLayer
             maxZoom={20}
             attribution='&copy; <a href="http://www.openstreetmap.org/copyright"></a>'
@@ -65,9 +66,12 @@ const Map = () => {
                     </h1>
                     <div className="flex items-center gap-2">
                       <div>
-                      <img className="w-[86px] h-[50px] object-contain " src={marker.flag} />
+                        <img
+                          className="w-[86px] h-[50px] object-contain "
+                          src={marker.flag}
+                        />
                       </div>
-                    
+
                       <h1 className="text-lg text-secondary">{marker.name}</h1>
                     </div>
                   </div>
