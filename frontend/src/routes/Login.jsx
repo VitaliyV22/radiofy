@@ -6,9 +6,13 @@ export const Login = () => {
   return (
     <>
       <Navbar />
-      <LoginComp />
-      <div>
-        <Link to="/register">Register</Link>
+      <div className="flex flex-col justify-center mt-52 items-center gap-2">
+        <LoginComp />
+        <div className="text-sm">
+          
+          Don't have an account?
+          <Link className="font-semibold" to="/register"> Register Here </Link>
+        </div>
       </div>
     </>
   );

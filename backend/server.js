@@ -2,8 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
 const { createUsersTable } = require('./models/userModel');
+const { createFavoritesTable } = require('./models/favoritesModel');
 const authRoutes = require('./routes/authRoutes');
 const radioRoutes = require('./routes/radioRoutes');
+const favoritesRoutes = require('./routes/favoritesRoutes');
 
 const app = express();
 
@@ -16,11 +18,13 @@ const pool = require('./config/db');
 
 // Create users table
 createUsersTable();
+createFavoritesTable()
 
 // Use routes
 app.use('/api/auth', authRoutes);
 app.use('/api/radio', radioRoutes);
-app.use('api/profile', authRoutes)
+app.use('/api/profile', authRoutes)
+app.use('/api/favorites', favoritesRoutes);
 
 const PORT = 8080;
 

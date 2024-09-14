@@ -8,19 +8,23 @@ import {
   faVolumeMute,
 } from "@fortawesome/free-solid-svg-icons";
 import { PiStarBold, PiStarFill } from "react-icons/pi";
+import useFavorites from "../hooks/useFavorites"; // Import the hook
 
 const Player = ({ url, stationName, stationFlag }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
   const [volume, setVolume] = useState(1);
   const [showVolumeControl, setShowVolumeControl] = useState(false);
   const audioRef = useRef(null);
 
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
+
+  const favorite = favorites.find((fav) => fav.station_name === stationName);
+  const isFavorite = !!favorite;
   useEffect(() => {
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
-  });
+  }, []);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -43,7 +47,11 @@ const Player = ({ url, stationName, stationFlag }) => {
   }, [url]);
 
   const handleFavorites = () => {
-    setIsFavorite((prevIsFavorite) => !prevIsFavorite);
+    if (isFavorite) {
+      removeFavorite(favorite.id);
+    } else {
+      addFavorite({ station_name: stationName, station_url: url, station_flag: stationFlag });
+    }
   };
 
   const handlePlayPause = () => {
@@ -71,25 +79,21 @@ const Player = ({ url, stationName, stationFlag }) => {
   const getVolumeIcon = () => (volume > 0.5 ? faVolumeUp : faVolumeMute);
 
   return (
-    // info
     <div className="fixed bottom-0 w-full p-4 shadow-lg flex justify-center gap-5">
       <div className="flex rounded-lg px-2">
-        <div className="flex gap-2 items-center  p-2 rounded-xl  ">
-          <img className="w-14 h-18" src={stationFlag} />
+        <div className="flex gap-2 items-center p-2 rounded-xl">
+          <img className="w-14 h-18" src={stationFlag} alt="Station Flag" />
           <h1 className="font-bold text-2xl">{stationName}</h1>
         </div>
-        {/* player  */}
         <div className="flex items-center p-2 rounded-xl gap-3">
           {isLoggedIn ? (
-            <>
-              <button className="text-xl" onClick={handleFavorites}>
-                {isFavorite ? <PiStarFill /> : <PiStarBold />}
-              </button>
-            </>
+            <button className="text-xl" onClick={handleFavorites}>
+              {isFavorite ? <PiStarFill /> : <PiStarBold />}
+            </button>
           ) : (
             <div>
               <Link className="text-xl" to="/login">
-              <PiStarFill />
+                <PiStarFill />
               </Link>
             </div>
           )}

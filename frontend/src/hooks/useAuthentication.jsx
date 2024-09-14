@@ -11,6 +11,7 @@ const useAuth = () => {
       const response = await axios.post('http://localhost:8080/api/auth/login', { email, password });
       localStorage.setItem('token', response.data.token);
       navigate('/');
+      window.location.reload()
     } catch (error) {
       console.error('Login failed:', error.response.data);
       throw error;
@@ -21,6 +22,7 @@ const useAuth = () => {
     try {
       const response = await axios.post('http://localhost:8080/api/auth/register', { username, email, password });
       navigate('/login');
+      window.location.reload
     } catch (error) {
       console.error('Registration failed:', error.response.data);
       throw error;
