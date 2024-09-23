@@ -81,6 +81,7 @@ const Map = () => {
                   >
                     Play
                   </button>
+              
                 </div>
               </Popup>
             </Marker>

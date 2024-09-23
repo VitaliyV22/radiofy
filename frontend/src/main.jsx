@@ -11,6 +11,8 @@ import { Login } from "./routes/Login";
 import { AdminPage } from "./routes/AdminPage";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { Favorites } from "./components/Favorites";
+import { FavoritesProvider } from "./contexts/FavoritesContext";
 
 const router = createBrowserRouter([
   {
@@ -27,11 +29,20 @@ const router = createBrowserRouter([
   },
   {
     path: 'admin',
-    element: <ProtectedRoute/>, 
+    element: <ProtectedRoute />, 
     children: [
       {
         path: '',
         element: <AdminPage />,
+      },
+    ],
+  },
+  {
+    element: <ProtectedRoute />, 
+    children: [
+      {
+        path: 'favorites', 
+        element: <Favorites />,
       },
     ],
   },
@@ -40,7 +51,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <FavoritesProvider>
+        <RouterProvider router={router} />
+      </FavoritesProvider>
     </AuthProvider>
   </React.StrictMode>
 );

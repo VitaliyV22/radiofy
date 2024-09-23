@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import {
@@ -8,7 +8,8 @@ import {
   faVolumeMute,
 } from "@fortawesome/free-solid-svg-icons";
 import { PiStarBold, PiStarFill } from "react-icons/pi";
-import useFavorites from "../hooks/useFavorites"; // Import the hook
+import FavoritesContext from "../contexts/FavoritesContext";
+import { FaItunesNote } from "react-icons/fa";
 
 const Player = ({ url, stationName, stationFlag }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,10 +18,16 @@ const Player = ({ url, stationName, stationFlag }) => {
   const [showVolumeControl, setShowVolumeControl] = useState(false);
   const audioRef = useRef(null);
 
-  const { favorites, addFavorite, removeFavorite } = useFavorites();
+  const { favorites, addFavorite, removeFavorite, fetchFavorites } =
+    useContext(FavoritesContext);
+
+  useEffect(() => {
+    fetchFavorites();
+  }, [fetchFavorites]);
 
   const favorite = favorites.find((fav) => fav.station_name === stationName);
   const isFavorite = !!favorite;
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
@@ -46,12 +53,18 @@ const Player = ({ url, stationName, stationFlag }) => {
     }
   }, [url]);
 
-  const handleFavorites = () => {
+  const handleFavorites = async () => {
     if (isFavorite) {
-      removeFavorite(favorite.id);
+      await removeFavorite(favorite.id);
     } else {
-      addFavorite({ station_name: stationName, station_url: url, station_flag: stationFlag });
+      await addFavorite({
+        station_name: stationName,
+        station_url: url,
+        station_flag: stationFlag,
+      });
     }
+    fetchFavorites();
+    window.dispatchEvent(new CustomEvent("favoritesUpdated"));
   };
 
   const handlePlayPause = () => {
@@ -79,13 +92,18 @@ const Player = ({ url, stationName, stationFlag }) => {
   const getVolumeIcon = () => (volume > 0.5 ? faVolumeUp : faVolumeMute);
 
   return (
-    <div className="fixed bottom-0 w-full p-4 shadow-lg flex justify-center gap-5">
+    <div className="w-full p-4 shadow-lg flex justify-center gap-5">
       <div className="flex rounded-lg px-2">
         <div className="flex gap-2 items-center p-2 rounded-xl">
-          <img className="w-14 h-18" src={stationFlag} alt="Station Flag" />
+          <img
+            className="w-14 h-18"
+            src={stationFlag} 
+          
+          />
           <h1 className="font-bold text-2xl">{stationName}</h1>
         </div>
         <div className="flex items-center p-2 rounded-xl gap-3">
+          
           {isLoggedIn ? (
             <button className="text-xl" onClick={handleFavorites}>
               {isFavorite ? <PiStarFill /> : <PiStarBold />}
@@ -93,7 +111,7 @@ const Player = ({ url, stationName, stationFlag }) => {
           ) : (
             <div>
               <Link className="text-xl" to="/login">
-                <PiStarFill />
+                <PiStarBold />
               </Link>
             </div>
           )}

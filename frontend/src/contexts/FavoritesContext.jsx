@@ -1,16 +1,16 @@
-import { useState, useEffect } from "react";
-import axios from 'axios';
-export const useFavorites = () => {
+import React, { createContext, useState, useEffect, useCallback } from "react";
+import axios from "axios";
+
+const FavoritesContext = createContext();
+
+export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetchFavorites();
-  }, []);
-
-  const fetchFavorites = async () => {
+  const fetchFavorites = useCallback(async () => {
     setLoading(true);
+    setError(null);
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
@@ -23,14 +23,16 @@ export const useFavorites = () => {
       );
       setFavorites(response.data);
     } catch (err) {
-      setError(err.response.data);
+      setError(err.response?.data || "An error occurred while fetching favorites.");
+      console.error("Error fetching favorites:", err);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const addFavorite = async (favorite) => {
+  const addFavorite = useCallback(async (favorite) => {
     setLoading(true);
+    setError(null);
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
@@ -44,14 +46,16 @@ export const useFavorites = () => {
       );
       setFavorites((prevFavorites) => [...prevFavorites, response.data]);
     } catch (err) {
-      setError(err.response.data);
+      setError(err.response?.data || "An error occurred while adding the favorite.");
+      console.error("Error adding favorite:", err);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const removeFavorite = async (favoriteId) => {
+  const removeFavorite = useCallback(async (favoriteId) => {
     setLoading(true);
+    setError(null);
     try {
       const token = localStorage.getItem("token");
       await axios.delete(
@@ -66,19 +70,27 @@ export const useFavorites = () => {
         prevFavorites.filter((fav) => fav.id !== favoriteId)
       );
     } catch (err) {
-      setError(err.response.data);
+      setError(err.response?.data || "An error occurred while removing the favorite.");
+      console.error("Error removing favorite:", err);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  return {
-    favorites,
-    loading,
-    error,
-    fetchFavorites,
-    addFavorite,
-    removeFavorite,
-  };
+  return (
+    <FavoritesContext.Provider
+      value={{
+        favorites,
+        loading,
+        error,
+        fetchFavorites,
+        addFavorite,
+        removeFavorite,
+      }}
+    >
+      {children}
+    </FavoritesContext.Provider>
+  );
 };
-export default useFavorites;
+
+export default FavoritesContext;
