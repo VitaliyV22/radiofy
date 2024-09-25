@@ -21,7 +21,7 @@ export const Navbar = () => {
             <>
               <li>
                 <Link to="/admin" className="text-2xl">
-                  Admin
+                  Profile
                 </Link>
               </li>
               <li>

@@ -5,17 +5,49 @@ import { Icon } from "leaflet";
 import { Popup } from "react-leaflet";
 import Player from "./Player";
 import { useRadioData } from "../hooks/useRadioData";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
-const Map = () => {
+import FavoritesContext from "../contexts/FavoritesContext";
+import { Link } from "react-router-dom";
 
+const Map = () => {
   const accessToken = process.env.REACT_APP_MAP_ACCESS_TOKEN;
   const markers = useRadioData();
-  
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUrl, setCurrentUrl] = useState(null);
   const [stationName, setStationName] = useState(null);
   const [stationFlag, setStationFlag] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(null);
+
+  const { favorites, addFavorite, removeFavorite, fetchFavorites } =
+    useContext(FavoritesContext);
+
+  useEffect(() => {
+    fetchFavorites();
+  }, [fetchFavorites]);
+
+  const favorite = favorites.find((fav) => fav.station_name === stationName);
+  const isFavorite = !!favorite;
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleFavorites = async () => {
+    if (isFavorite) {
+      await removeFavorite(favorite.id);
+    } else {
+      await addFavorite({
+        station_name: stationName,
+        station_url: currentUrl,
+        station_flag: stationFlag,
+      });
+    }
+    fetchFavorites();
+    window.dispatchEvent(new CustomEvent("favoritesUpdated"));
+  };
 
   const handlePlay = (marker) => {
     setCurrentUrl(marker.url);
@@ -81,7 +113,14 @@ const Map = () => {
                   >
                     Play
                   </button>
-              
+                  {isLoggedIn ? (
+                    <button onClick={handleFavorites} className="btn text-lg">{isFavorite ? "Unfavorite" : "Favorite"}</button>
+                  ) : (
+                    
+                    <Link className="btn text-lg" to="/login">
+                      Favorite
+                  </Link>
+                  )}
                 </div>
               </Popup>
             </Marker>

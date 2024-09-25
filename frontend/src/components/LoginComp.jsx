@@ -23,6 +23,7 @@ const LoginComp = () => {
     <>
       <div className="flex justify-center">
         <div className="flex flex-col ">
+      
           <form onSubmit={handleSubmit} className="flex flex-col ">
             <input
               className="input-lg"
@@ -46,6 +47,7 @@ const LoginComp = () => {
           </form>
           {error && <h1>{error}</h1>}
         </div>
+        
       </div>
     </>
   );
