@@ -26,6 +26,6 @@ app.use('/api/radio', radioRoutes);
 app.use('/api/profile', authRoutes)
 app.use('/api/favorites', favoritesRoutes);
 
-const PORT = 8080;
+const PORT = 4000;
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

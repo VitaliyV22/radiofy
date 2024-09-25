@@ -7,14 +7,16 @@ export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  url = "https://radiofy-server.onrender.com";
+ 
+
   const fetchFavorites = useCallback(async () => {
+   
     setLoading(true);
     setError(null);
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        url + "8080/api/favorites/getFavorites",
+        "https://radiofy-server.onrender.com/api/favorites/getFavorites",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -38,7 +40,7 @@ export const FavoritesProvider = ({ children }) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        url + "/api/favorites/addFavorites",
+        "https://radiofy-server.onrender.com/api/favorites/addFavorites",
         favorite,
         {
           headers: {
@@ -62,7 +64,7 @@ export const FavoritesProvider = ({ children }) => {
     setError(null);
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(url + `/api/favorites/removeFavorite/${favoriteId}`, {
+      await axios.delete(`https://radiofy-server.onrender.com/api/favorites/removeFavorite/${favoriteId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

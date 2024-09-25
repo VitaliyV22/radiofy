@@ -1,5 +1,5 @@
 ####
-GET http://localhost:8080/api/radioData
+POST http://radiofy-server.onrender.com/api/register
 
 ####
 POST http://localhost:8080/api/register
