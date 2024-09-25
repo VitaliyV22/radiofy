@@ -3,9 +3,9 @@ import axios from 'axios';
 
 export const useRadioData = () => {
     const [data, setData] = useState([]);
-    
+    url = "https://radiofy-server.onrender.com"
     useEffect(() => {
-        axios.get('http://localhost:8080/api/radio')
+        axios.get(url + '/api/radio')
             .then(response => setData(response.data))
             .catch(console.error); 
     }, []);

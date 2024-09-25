@@ -7,14 +7,14 @@ export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  url = "https://radiofy-server.onrender.com";
   const fetchFavorites = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        "http://localhost:8080/api/favorites/getFavorites",
+        url + "8080/api/favorites/getFavorites",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -23,7 +23,9 @@ export const FavoritesProvider = ({ children }) => {
       );
       setFavorites(response.data);
     } catch (err) {
-      setError(err.response?.data || "An error occurred while fetching favorites.");
+      setError(
+        err.response?.data || "An error occurred while fetching favorites."
+      );
       console.error("Error fetching favorites:", err);
     } finally {
       setLoading(false);
@@ -36,7 +38,7 @@ export const FavoritesProvider = ({ children }) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:8080/api/favorites/addFavorites",
+        url + "/api/favorites/addFavorites",
         favorite,
         {
           headers: {
@@ -46,7 +48,9 @@ export const FavoritesProvider = ({ children }) => {
       );
       setFavorites((prevFavorites) => [...prevFavorites, response.data]);
     } catch (err) {
-      setError(err.response?.data || "An error occurred while adding the favorite.");
+      setError(
+        err.response?.data || "An error occurred while adding the favorite."
+      );
       console.error("Error adding favorite:", err);
     } finally {
       setLoading(false);
@@ -58,19 +62,18 @@ export const FavoritesProvider = ({ children }) => {
     setError(null);
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(
-        `http://localhost:8080/api/favorites/removeFavorite/${favoriteId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await axios.delete(url + `/api/favorites/removeFavorite/${favoriteId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setFavorites((prevFavorites) =>
         prevFavorites.filter((fav) => fav.id !== favoriteId)
       );
     } catch (err) {
-      setError(err.response?.data || "An error occurred while removing the favorite.");
+      setError(
+        err.response?.data || "An error occurred while removing the favorite."
+      );
       console.error("Error removing favorite:", err);
     } finally {
       setLoading(false);
