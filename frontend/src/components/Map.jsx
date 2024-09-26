@@ -113,14 +113,8 @@ const Map = () => {
                   >
                     Play
                   </button>
-                  {isLoggedIn ? (
-                    <button onClick={handleFavorites} className="btn text-lg">{isFavorite ? "Unfavorite" : "Favorite"}</button>
-                  ) : (
-                    
-                    <Link className="btn text-lg" to="/login">
-                      Favorite
-                  </Link>
-                  )}
+              
+                  
                 </div>
               </Popup>
             </Marker>

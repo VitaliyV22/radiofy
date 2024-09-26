@@ -42,7 +42,7 @@ export const Favorites = () => {
                     </td>
                     <td>
                       <div className="flex gap-2">
-                        <button className="btn btn-xs">Play</button>
+                      
                         <button
                           onClick={() => removeFavorite(favorite.id)}
                           className="btn btn-xs"
