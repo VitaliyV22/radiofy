@@ -9,7 +9,7 @@ export const Navbar = () => {
     logout()
   };
   return (
-    <div className="navbar bg-base-100">
+    <nav className="navbar">
       <div className="flex-1">
         <Link to="/" className="btn btn-ghost text-4xl">
           Radiofy
@@ -73,6 +73,6 @@ export const Navbar = () => {
           </svg>
         </label>
       </div>
-    </div>
+    </nav>
   );
 };

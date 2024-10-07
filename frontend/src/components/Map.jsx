@@ -5,54 +5,28 @@ import { Icon } from "leaflet";
 import { Popup } from "react-leaflet";
 import Player from "./Player";
 import { useRadioData } from "../hooks/useRadioData";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useEffect } from "react";
-import FavoritesContext from "../contexts/FavoritesContext";
-import { Link } from "react-router-dom";
+
 
 const Map = () => {
   const accessToken = process.env.REACT_APP_MAP_ACCESS_TOKEN;
   const markers = useRadioData();
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUrl, setCurrentUrl] = useState(null);
   const [stationName, setStationName] = useState(null);
   const [stationFlag, setStationFlag] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(null);
+  const [radioInfo, setRadioInfo] = useState(false)
 
-  const { favorites, addFavorite, removeFavorite, fetchFavorites } =
-    useContext(FavoritesContext);
-
-  useEffect(() => {
-    fetchFavorites();
-  }, [fetchFavorites]);
-
-  const favorite = favorites.find((fav) => fav.station_name === stationName);
-  const isFavorite = !!favorite;
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-  }, []);
-
-  const handleFavorites = async () => {
-    if (isFavorite) {
-      await removeFavorite(favorite.id);
-    } else {
-      await addFavorite({
-        station_name: stationName,
-        station_url: currentUrl,
-        station_flag: stationFlag,
-      });
-    }
-    fetchFavorites();
-    window.dispatchEvent(new CustomEvent("favoritesUpdated"));
-  };
 
   const handlePlay = (marker) => {
     setCurrentUrl(marker.url);
     setStationName(marker.name);
     setStationFlag(marker.flag);
+    setRadioInfo(true)
+    console.log("radio info", radioInfo)
+    
   };
 
   // Radio icon on map
@@ -79,7 +53,7 @@ const Map = () => {
   }, []);
   console.log(isDarkMode);
   return (
-    <div>
+    <div className="z-10">
       <div>
         <MapContainer center={[40, -40]} zoom={4} scrollWheelZoom={false}>
           <TileLayer
@@ -125,6 +99,7 @@ const Map = () => {
         url={currentUrl}
         stationName={stationName}
         stationFlag={stationFlag}
+        radioInfo = {radioInfo}
       />
     </div>
   );

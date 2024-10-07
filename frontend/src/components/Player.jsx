@@ -10,7 +10,7 @@ import {
 import { PiStarBold, PiStarFill } from "react-icons/pi";
 import FavoritesContext from "../contexts/FavoritesContext";
 
-const Player = ({ url, stationName, stationFlag }) => {
+const Player = ({ url, stationName, stationFlag, radioInfo }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -64,6 +64,10 @@ const Player = ({ url, stationName, stationFlag }) => {
   }, [url]);
 
   const handleFavorites = async () => {
+    if (radioInfo === false) {
+      alert("please select a station")
+      return
+    } 
     if (isFavorite) {
       await removeFavorite(favorite.id);
     } else {
@@ -72,6 +76,7 @@ const Player = ({ url, stationName, stationFlag }) => {
         station_url: url,
         station_flag: stationFlag,
       });
+      alert("added station to favorites")
     }
     fetchFavorites();
     window.dispatchEvent(new CustomEvent("favoritesUpdated"));
@@ -113,21 +118,13 @@ const Player = ({ url, stationName, stationFlag }) => {
     <div className="w-full p-4 shadow-lg flex justify-center gap-5">
       <div className="flex rounded-lg px-2">
         <div className="flex gap-2 items-center p-2 rounded-xl">
-          <img className="w-14 h-18" src={stationFlag}/>
+          <img className="w-14 h-18" src={stationFlag} />
           <h1 className="font-bold text-2xl">{stationName}</h1>
         </div>
         <div className="flex items-center p-2 rounded-xl gap-3">
-          {isLoggedIn && isPlaying ? (
-            <button className="text-xl" onClick={handleFavorites}>
-              {isFavorite ? <PiStarFill /> : <PiStarBold />}
-            </button>
-          ) : isLoggedIn && isPlaying ? (
-            <div>
-              <Link className="text-xl" to="/login">
-                <PiStarBold />
-              </Link>
-            </div>
-          ) : null}
+          <button className="text-xl" onClick={handleFavorites}>
+            {isFavorite ? <PiStarFill /> : <PiStarBold />}
+          </button>
           <button onClick={handlePlayPause}>
             {isLoading ? (
               <span className="loading loading-spinner loading-md"></span>

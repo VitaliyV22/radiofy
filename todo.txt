@@ -1,0 +1,10 @@
+It is better to make the top navigation bar sticky to the top so that is easily accessible while scrolling vertically.
+
+The feature to add radio stations to favorites is only accessible when the channel is playing. This can be easily missed. Maybe it could be added alongside the "play" button when a radio station is selected.
+
+Also, when a station is added to favorites, it is not usable. It would be better to play the radio station from the favorites.
+
+The initial_project_ideas.md file is missing.
+
+The project_proposal.md file is missing.
+Process & Understanding (60 Points)
