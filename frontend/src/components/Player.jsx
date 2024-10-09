@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast'
 import {
   faCirclePlay,
   faPauseCircle,
@@ -16,8 +16,9 @@ const Player = ({ url, stationName, stationFlag, radioInfo }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [volume, setVolume] = useState(1);
   const [showVolumeControl, setShowVolumeControl] = useState(false);
-  const audioRef = useRef(null);
+  const audioRef = useRef(null);  
 
+  
   const { favorites, addFavorite, removeFavorite, fetchFavorites } =
     useContext(FavoritesContext);
 
@@ -63,9 +64,16 @@ const Player = ({ url, stationName, stationFlag, radioInfo }) => {
     }
   }, [url]);
 
+  const handleAlert = () => {
+    toast.error("Login To Add Favorites"),{
+      toastId: 'loginFav'
+    }
+  }
   const handleFavorites = async () => {
     if (radioInfo === false) {
-      alert("please select a station")
+      toast.error("Please Select A Station", {
+        id:"noStation",
+      })
       return
     } 
     if (isFavorite) {
@@ -76,13 +84,21 @@ const Player = ({ url, stationName, stationFlag, radioInfo }) => {
         station_url: url,
         station_flag: stationFlag,
       });
-      alert("added station to favorites")
+      toast.success("Added to Favorites", {
+        toastId: "addFav",
+      })
     }
     fetchFavorites();
     window.dispatchEvent(new CustomEvent("favoritesUpdated"));
   };
 
   const handlePlayPause = () => {
+    if (radioInfo === false) {
+      toast.error("please select a station", {
+        toastId:'playError',
+      })
+      return
+    } 
     const audio = audioRef.current;
     if (isPlaying) {
       audio.pause();
@@ -122,9 +138,13 @@ const Player = ({ url, stationName, stationFlag, radioInfo }) => {
           <h1 className="font-bold text-2xl">{stationName}</h1>
         </div>
         <div className="flex items-center p-2 rounded-xl gap-3">
-          <button className="text-xl" onClick={handleFavorites}>
+          {isLoggedIn ? ( <button className="text-xl" onClick={handleFavorites}>
             {isFavorite ? <PiStarFill /> : <PiStarBold />}
-          </button>
+          </button>) : (<button className="text-xl" onClick={handleAlert}> 
+            <PiStarBold />
+          
+          </button>)}
+         
           <button onClick={handlePlayPause}>
             {isLoading ? (
               <span className="loading loading-spinner loading-md"></span>
@@ -134,6 +154,7 @@ const Player = ({ url, stationName, stationFlag, radioInfo }) => {
                   className="w-10 h-10"
                   icon={isPlaying ? faPauseCircle : faCirclePlay}
                 />
+              
               </>
             )}
           </button>
@@ -154,6 +175,7 @@ const Player = ({ url, stationName, stationFlag, radioInfo }) => {
           <audio ref={audioRef} />
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

@@ -1,9 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import { Home } from "./routes/Home";
 import { Register } from "./routes/Register";
@@ -16,39 +13,39 @@ import { FavoritesProvider } from "./contexts/FavoritesContext";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Home />,
   },
   {
-    path: 'login',
+    path: "login",
     element: <Login />,
   },
   {
-    path: 'register',
+    path: "register",
     element: <Register />,
   },
   {
-    path: 'admin',
-    element: <ProtectedRoute />, 
+    path: "admin",
+    element: <ProtectedRoute />,
     children: [
       {
-        path: '',
+        path: "",
         element: <AdminPage />,
       },
     ],
   },
   {
-    element: <ProtectedRoute />, 
+    element: <ProtectedRoute />,
     children: [
       {
-        path: 'favorites', 
+        path: "favorites",
         element: <Favorites />,
       },
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
       <FavoritesProvider>
